@@ -553,6 +553,7 @@ export class QueryObserver<
         state.dataUpdateCount > queryInitialState.dataUpdateCount ||
         state.errorUpdateCount > queryInitialState.errorUpdateCount,
       isFetching,
+      isRefetching: isFetching && status !== 'loading',
       isLoadingError: status === 'error' && state.dataUpdatedAt === 0,
       isPlaceholderData,
       isPreviousData,

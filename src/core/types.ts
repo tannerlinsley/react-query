@@ -279,6 +279,7 @@ export interface QueryObserverBaseResult<TData = unknown, TError = unknown> {
   isPlaceholderData: boolean
   isPreviousData: boolean
   isRefetchError: boolean
+  isRefetching: boolean
   isStale: boolean
   isSuccess: boolean
   refetch: (

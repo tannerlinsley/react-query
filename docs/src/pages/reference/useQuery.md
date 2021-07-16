@@ -20,6 +20,7 @@ const {
   isPlaceholderData,
   isPreviousData,
   isRefetchError,
+  isRefetching,
   isStale,
   isSuccess,
   refetch,
@@ -218,6 +219,9 @@ const result = useQuery({
 - `isFetching: boolean`
   - Is `true` whenever a request is in-flight, which includes initial `loading` as well as background refetches.
   - Will be `true` if the query is currently fetching, including background fetching.
+- `isRefetching: boolean`
+  - Is `true` whenever a background refetch is in-flight, which _does not_ include initial `loading`
+  - Is the same as `isFetching && !isLoading`
 - `failureCount: number`
   - The failure count for the query.
   - Incremented every time the query fails.
