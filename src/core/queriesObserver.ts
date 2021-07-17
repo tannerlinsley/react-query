@@ -1,11 +1,19 @@
 import { difference, replaceAt } from './utils'
 import { notifyManager } from './notifyManager'
-import type { QueryObserverOptions, QueryObserverResult } from './types'
+import type {
+  QueryObserverOptions,
+  QueryObserverResult,
+  RefetchOptions,
+} from './types'
 import type { QueryClient } from './queryClient'
 import { NotifyOptions, QueryObserver } from './queryObserver'
 import { Subscribable } from './subscribable'
 
 type QueriesObserverListener = (result: QueryObserverResult[]) => void
+
+interface QueriesRefetchOptions extends RefetchOptions {
+  filter: (observer: QueryObserver) => boolean
+}
 
 export class QueriesObserver extends Subscribable<QueriesObserverListener> {
   private client: QueryClient
@@ -61,6 +69,16 @@ export class QueriesObserver extends Subscribable<QueriesObserverListener> {
 
   getCurrentResult(): QueryObserverResult[] {
     return this.result
+  }
+
+  refetch(options?: QueriesRefetchOptions): Promise<QueryObserverResult[]> {
+    let observers = this.observers
+
+    if (options?.filter) {
+      observers = this.observers.filter(options.filter)
+    }
+
+    return Promise.all(observers.map(observer => observer.refetch(options)))
   }
 
   getOptimisticResult(queries: QueryObserverOptions[]): QueryObserverResult[] {
