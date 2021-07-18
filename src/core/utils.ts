@@ -166,6 +166,13 @@ export function parseFilterArgs<
     : [arg1 || {}, arg2]) as [TFilters, TOptions]
 }
 
+export function parseMutationFilterArgs(
+  arg1?: QueryKey | MutationFilters,
+  arg2?: MutationFilters
+): MutationFilters | undefined {
+  return isQueryKey(arg1) ? { ...arg2, mutationKey: arg1 } : arg1
+}
+
 export function mapQueryStatusFilter(
   active?: boolean,
   inactive?: boolean

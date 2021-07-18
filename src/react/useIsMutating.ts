@@ -1,11 +1,21 @@
 import React from 'react'
 
 import { notifyManager } from '../core/notifyManager'
-import { MutationFilters } from '../core/utils'
+import { QueryKey } from '../core/types'
+import { MutationFilters, parseMutationFilterArgs } from '../core/utils'
 import { useQueryClient } from './QueryClientProvider'
 
-export function useIsMutating(filters?: MutationFilters): number {
+export function useIsMutating(filters?: MutationFilters): number
+export function useIsMutating(
+  queryKey?: QueryKey,
+  filters?: MutationFilters
+): number
+export function useIsMutating(
+  arg1?: QueryKey | MutationFilters,
+  arg2?: MutationFilters
+): number {
   const mountedRef = React.useRef(false)
+  const filters = parseMutationFilterArgs(arg1, arg2)
 
   const queryClient = useQueryClient()
 

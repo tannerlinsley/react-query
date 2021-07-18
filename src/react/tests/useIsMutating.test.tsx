@@ -45,7 +45,7 @@ describe('useIsMutating', () => {
     const queryClient = new QueryClient()
 
     function IsMutating() {
-      const isMutating = useIsMutating({ mutationKey: 'mutation1' })
+      const isMutating = useIsMutating('mutation1')
       isMutatings.push(isMutating)
       return null
     }
