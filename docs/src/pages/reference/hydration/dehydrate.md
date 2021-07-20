@@ -3,7 +3,7 @@ id: hydration/dehydrate
 title: hydration/dehydrate
 ---
 
-`dehydrate` creates a frozen representation of a `cache` that can later be hydrated with `Hydrate`, `useHydrate`, or `hydrate`. This is useful for passing prefetched queries from server to client or persisting queries to localstorage or other persisten locations. It only includes currently successful queries by default.
+`dehydrate` creates a frozen representation of a `cache` that can later be hydrated with `Hydrate`, `useHydrate`, or `hydrate`. This is useful for passing prefetched queries from server to client or persisting queries to localstorage or other persistent locations. It only includes currently successful queries by default.
 
 ```js
 import { dehydrate } from 'react-query/hydration'
