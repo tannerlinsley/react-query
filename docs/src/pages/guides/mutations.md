@@ -46,7 +46,7 @@ A mutation can only be in one of the following states at any given moment:
 
 Beyond those primary states, more information is available depending on the state of the mutation:
 
-- `error` - If the mutation is in an `isError` state, the error is available via the `error` property.
+- `error` - If the mutation is in an `error` state, the error is available via the `error` property.
 - `data` - If the mutation is in a `success` state, the data is available via the `data` property.
 
 In the example above, you also saw that you can pass variables to your mutations function by calling the `mutate` function with a **single variable or object**.
